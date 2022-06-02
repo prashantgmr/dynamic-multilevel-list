@@ -37,6 +37,7 @@ export function DataProvider(props) {
       if (parentId === e.parent_id) {
         let children = orgGreenTree(data, e.NodeText);
         if (children.length) obj.children = children;
+        else obj.children = [];
         r.push(obj);
       }
       return r;
@@ -53,7 +54,6 @@ export function DataProvider(props) {
     });
   };
   useEffect(() => {
-    console.log(state.serviceBlock, "redeo");
     const serviceBlockListwithparentId = connectParent(state.serviceBlock);
     const treeData = orgGreenTree(serviceBlockListwithparentId);
     dispatch({ type: "REARRANGE_SERVICE_BLOCK", payload: treeData });
